@@ -1,0 +1,25 @@
+{
+  "name": "e200js",
+  "description": "Collection of reused codes from my portfolio",
+  "main": "e200.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e200/e200js.git"
+  },
+  "author": "Eleandro Duzentos <eleandro@inbox.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/e200/e200js/issues"
+  },
+  "homepage": "https://github.com/e200/e200js",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-uglify": "^3.0.0"
+  }
+}
