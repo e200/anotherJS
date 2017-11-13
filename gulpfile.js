@@ -22,9 +22,7 @@ gulp.task('js:minify', function(){
             drop_debugger: true,
             toplevel: true
         },
-        mangle: {
-            toplevel: true
-        }
+        mangle: true
     }
 
     return gulp.src([srcFolder + 'another.js'])
