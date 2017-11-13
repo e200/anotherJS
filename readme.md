@@ -1,10 +1,10 @@
 # anotherJS
 
-A very smaller JS library for those front-ends who makes most things using pure CSS and just need something smaller with methods like addClass, removeClass, toggleClass, etc...
+A very smaller JS library for those **Frontends** who makes most things using pure CSS and just need something smaller within methods like toggleClass, show, hide, find, css, etc...
 
 ## Usage
 
-If you're familiar with jQuery there's nothing to explain.
+If you're familiar with jQuery there's no much to explain:
 
 ```javascript
 $('body')
@@ -16,12 +16,14 @@ $('body')
 
 This library comes with the following methods:
 
+- css()
 - hide()
 - show()
-- find()
+- toggle()
 - addClass()
 - removeClass()
 - toggleClass()
+- find()
 - firstChild()
 - lastChild()
 
@@ -34,6 +36,24 @@ $('body')
     .on('click', function(){
         $(this).hide()
     })
+```
+
+You can get the **NodeList** of the matched elements:
+
+```javascript
+$('selector').elements
+```
+
+Getting the matched elements length:
+
+```javascript
+$('selector').length
+```
+
+Getting the query selector string used to match the elements:
+
+```javascript
+$('selector').selector
 ```
 
 ## Support
