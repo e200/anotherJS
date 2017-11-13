@@ -1,15 +1,30 @@
 (function(window) {
-    var slim = function(selector, elements) {
+    var another = function(selector, elements) {
         this.selector = selector
         this.elements = elements ? elements : document.querySelectorAll(selector)
         this.length   = this.elements.length
 
-        this.find = find
-
+        this.css        = css
+        this.find       = find
+        this.firstChild = firstChild        
+        this.lastChild  = lastChild        
+        
         this.hasClass    = hasClass
         this.addClass    = addClass
         this.removeClass = removeClass
         this.toggleClass = toggleClass
+    }
+
+    function css(properties) {
+        $.forEach(this.elements, function(element){
+            for (var key in properties) {
+                if (properties.hasOwnProperty(key)) {
+                    element.style[key] = properties[key]
+                }
+            }
+        })
+
+        return this
     }
 
     function find(selector) {
@@ -21,7 +36,19 @@
             })      
         })
 
-        return new slim(selector, matchedElements)
+        return new another(selector, matchedElements)
+    }
+
+    function firstChild() {
+        var firstElement = this.elements[0].firstElementChild
+
+        return new another(undefined, [firstElement])
+    }
+
+    function lastChild() {
+        var lastElement = this.elements[0].lastElementChild
+
+        return new another(undefined, [lastElement])
     }
 
     /**
@@ -83,37 +110,7 @@
     }
 
     var $ = function(selector) {
-        return new slim(selector)
-    }
-
-    $.map = function (list, callback) {
-        let
-            i        = list.length
-            elements = []
-
-        while (i--) {
-            var currentElement = list[i]
-
-            if (callback(currentElement)) {
-                elements.push(currentElement)
-            }
-        }
-
-        return elements
-    }
-
-    $.walk = function (list, callback) {
-        let
-            i        = list.length
-            elements = []
-
-        while (i--) {
-            var currentElement = list[i]
-
-            elements.push(callback(currentElement))
-        }
-
-        return elements
+        return new another(selector)
     }
 
     $.some = function (list, callback) {
@@ -136,5 +133,9 @@
         }
     }
 
-    window.$ = $
+    if (!window.$) {
+        window.$ = $
+    } else {
+        window.anotherJS = $
+    }
 })(window)
