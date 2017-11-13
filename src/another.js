@@ -1,6 +1,19 @@
 (function(window) {
+    /**
+     * Another object.
+     * 
+     * 
+     * @param string selector Query selector for targets DOM elements
+     * @param array  elements Array containing DOM elements
+     */
     var another = function(selector, elements) {
         this.selector = selector
+
+        /**
+         * If we get a list of elements from outside
+         * of this function, we'll use these elements
+         * instead of query new ones.
+         */
         this.elements = elements ? elements : document.querySelectorAll(selector)
         this.length   = this.elements.length
 
@@ -15,6 +28,11 @@
         this.toggleClass = toggleClass
     }
 
+    /**
+     * Sets css properties into targets elements.
+     * 
+     * @param object properties 
+     */
     function css(properties) {
         $.forEach(this.elements, function(element){
             for (var key in properties) {
@@ -27,6 +45,11 @@
         return this
     }
 
+    /**
+     * Finds DOM elements inside the targets elements.
+     * 
+     * @param string selector 
+     */
     function find(selector) {
         var matchedElements = []
 
@@ -39,12 +62,18 @@
         return new another(selector, matchedElements)
     }
 
+    /**
+     * Gets the first DOM element inside the first target element.
+     */
     function firstChild() {
         var firstElement = this.elements[0].firstElementChild
 
         return new another(undefined, [firstElement])
     }
 
+    /**
+     * Gets the last DOM element inside the last target element.
+     */
     function lastChild() {
         var lastElement = this.elements[0].lastElementChild
 
@@ -109,10 +138,23 @@
         return this
     }
 
+    /**
+     * Gets the bootstrapper function.
+     * 
+     * @param string selector 
+     */
     var $ = function(selector) {
         return new another(selector)
     }
 
+    /**
+     * Returns an array containing all
+     * elements witch the test `callback`
+     * functions returns true when invoked.
+     * 
+     * @param array    list Array list
+     * @param function callback Test callback function
+     */
     $.some = function (list, callback) {
         var i = list.length
         
@@ -125,14 +167,32 @@
         return false
     }
 
+    /**
+     * Executes the `callback` for each
+     * element in the `list`.
+     * 
+     * The `callback` will get the current
+     * element as function argument.
+     * 
+     * @param array    list Array list
+     * @param function callback Test callback function
+     */
     $.forEach = function (list, callback) {
         var i = list.length
 
         while (i--) {
-            callback.apply(list[i], [list[i]])
+            callback([list[i]])
         }
     }
 
+    /**
+     * If someone has already signed `$`,
+     * will use the `anotherJS` as
+     * alternative.
+     * 
+     * This will prevent conflits with
+     * other libraries that uses `$`.
+     */
     if (!window.$) {
         window.$ = $
     } else {
