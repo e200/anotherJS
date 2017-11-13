@@ -39,9 +39,34 @@ QUnit.test("Hello JS Tests", function(assert){
     object = null
     expectedClass = null
 
+    /** css() */
+    object = $('#dynamic_css_input').css({display: 'none'})
+    assert.ok(object.elements[0].style.display === 'none')
+
+    object = $('#dynamic_css_input').css({display: ''})
+    assert.ok(object.elements[0].style.display === '')
+    
+    object = $('#dynamic_css_input').css({visibility: 'collapse'})
+    assert.ok(object.elements[0].style.visibility === 'collapse')
+    
+    object = $('#dynamic_css_input').css({visibility: 'visible'})
+    assert.ok(object.elements[0].style.visibility === 'visible')
+
+    object = $('#dynamic_css_input').css({backgroundColor: 'silver', borderColor: 'grey'})
+    assert.ok(object.elements[0].style.backgroundColor === 'silver')
+    assert.ok(object.elements[0].style.borderColor === 'grey')
+    
+    object = null
+
     // find()
     object = $('.words').find('span')
     assert.equal(object.length, 6)
 
+    // firstChild()
+    assert.ok($('.words').firstChild().hasClass('first'))
+
+    // lastChild()
+    assert.ok($('.words').lastChild().hasClass('last'))
+    
     object = null
 })
