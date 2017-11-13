@@ -27,7 +27,7 @@ gulp.task('js:minify', function(){
         }
     }
 
-    return gulp.src([srcFolder + 'slim.js'])
+    return gulp.src([srcFolder + 'another.js'])
         .pipe(pumbler())
         .pipe(uglify(uglifyOptions))
         .pipe(gulp.dest(distFolder))
