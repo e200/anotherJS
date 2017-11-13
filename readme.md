@@ -36,6 +36,8 @@ $('body')
     })
 ```
 
+## Support
+
 Need a new feature? Found a bug? Please report it opening an [new issue](https://github.com/e200/anotherJS/issues/new) or mailing [me](mailto://eleandro@inbox.ru) and we'll fix it as soon as possible.
 
 ## Contribute
