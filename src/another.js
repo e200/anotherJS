@@ -1,5 +1,4 @@
 (function(window) {
-
     var slim = function(selector, elements) {
         this.selector = selector
         this.elements = elements ? elements : document.querySelectorAll(selector)
