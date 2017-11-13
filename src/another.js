@@ -2,8 +2,7 @@
     /**
      * Another object.
      * 
-     * 
-     * @param string selector Query selector for targets DOM elements
+     * @param string selector Query selector for target DOM elements
      * @param array  elements Array containing DOM elements
      */
     var another = function(selector, elements) {
@@ -17,7 +16,11 @@
         this.elements = elements ? elements : document.querySelectorAll(selector)
         this.length   = this.elements.length
 
-        this.css        = css
+        this.css    = css
+        this.hide   = hide
+        this.show   = show
+        this.toggle = toggle
+
         this.find       = find
         this.firstChild = firstChild        
         this.lastChild  = lastChild        
@@ -39,6 +42,43 @@
                 if (properties.hasOwnProperty(key)) {
                     element.style[key] = properties[key]
                 }
+            }
+        })
+
+        return this
+    }
+
+    /**
+     * Hides the target element.
+     */
+    function hide() {
+        $.forEach(this.elements, function(element) {
+            element.style.display = 'none'
+        })
+
+        return this
+    }
+
+    /**
+     * Shows the target element.
+     */
+    function show() {
+        $.forEach(this.elements, function(element) {
+            element.style.display = 'block'
+        })
+
+        return this
+    }
+
+    /**
+     * Toggles the visibility of the target element.
+     */
+    function toggle() {
+        $.forEach(this.elements, function(element) {
+            if (element.style.display === 'none') {
+                element.style.display = ''
+            } else {
+                element.style.display = 'none'                
             }
         })
 
@@ -181,7 +221,7 @@
         var i = list.length
 
         while (i--) {
-            callback([list[i]])
+            callback(list[i])
         }
     }
 
