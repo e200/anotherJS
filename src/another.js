@@ -21,6 +21,9 @@
         this.show   = show;
         this.toggle = toggle;
 
+        this.on  = on
+        this.off = off
+
         this.next       = next;
         this.prev       = prev;
         this.find       = find;
@@ -196,6 +199,32 @@
         $.forEach(this.elements, callback);
 
         return this;
+    }
+
+    /**
+     * Adds event listeners to the targets.
+     * 
+     * @param string event_name 
+     * @param function callback 
+     */
+    function on(event_name, callback) {
+        bindCallback = callback.bind(this);
+
+        $.forEach(this.elements, function(element){
+            element.addEventListener(event_name, bindCallback);
+        })
+    }
+
+    /**
+     * Removes event listeners from the targets.
+     * 
+     * @param string event_name 
+     * @param function callback 
+     */
+    function off(event_name) {        
+        $.forEach(this.elements, fsunction(element){
+            element.removeEventListener(event_name);
+        })
     }
 
     /**
