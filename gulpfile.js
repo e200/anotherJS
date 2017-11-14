@@ -18,10 +18,7 @@ const
 
 gulp.task('js:minify', function(){
     const uglifyOptions = {
-        compress: {
-            drop_debugger: true,
-            toplevel: true
-        },
+        compress: true,
         mangle: true
     }
 
