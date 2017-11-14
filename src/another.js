@@ -6,29 +6,29 @@
      * @param array  elements Array containing DOM elements
      */
     var another = function(selector, elements) {
-        this.selector = selector
+        this.selector = selector;
 
         /**
          * If we get a list of elements from outside
          * of this function, we'll use these elements
          * instead of query new ones.
          */
-        this.elements = elements ? elements : document.querySelectorAll(selector)
-        this.length   = this.elements.length
+        this.elements = elements ? elements : document.querySelectorAll(selector);
+        this.length   = this.elements.length;
 
-        this.css    = css
-        this.hide   = hide
-        this.show   = show
-        this.toggle = toggle
+        this.css    = css;
+        this.hide   = hide;
+        this.show   = show;
+        this.toggle = toggle;
 
-        this.find       = find
-        this.firstChild = firstChild        
-        this.lastChild  = lastChild        
+        this.find       = find;
+        this.firstChild = firstChild;
+        this.lastChild  = lastChild;
         
-        this.hasClass    = hasClass
-        this.addClass    = addClass
-        this.removeClass = removeClass
-        this.toggleClass = toggleClass
+        this.hasClass    = hasClass;
+        this.addClass    = addClass;
+        this.removeClass = removeClass;
+        this.toggleClass = toggleClass;
     }
 
     /**
@@ -40,12 +40,12 @@
         $.forEach(this.elements, function(element){
             for (var key in properties) {
                 if (properties.hasOwnProperty(key)) {
-                    element.style[key] = properties[key]
+                    element.style[key] = properties[key];
                 }
             }
-        })
+        });
 
-        return this
+        return this;
     }
 
     /**
@@ -53,10 +53,10 @@
      */
     function hide() {
         $.forEach(this.elements, function(element) {
-            element.style.display = 'none'
-        })
+            element.style.display = 'none';
+        });
 
-        return this
+        return this;
     }
 
     /**
@@ -64,10 +64,10 @@
      */
     function show() {
         $.forEach(this.elements, function(element) {
-            element.style.display = 'block'
-        })
+            element.style.display = 'block';
+        });
 
-        return this
+        return this;
     }
 
     /**
@@ -76,13 +76,13 @@
     function toggle() {
         $.forEach(this.elements, function(element) {
             if (element.style.display === 'none') {
-                element.style.display = ''
+                element.style.display = '';
             } else {
-                element.style.display = 'none'                
+                element.style.display = 'none';            
             }
-        })
+        });
 
-        return this
+        return this;
     }
 
     /**
@@ -91,33 +91,33 @@
      * @param string selector 
      */
     function find(selector) {
-        var matchedElements = []
+        var matchedElements = [];
 
         $.forEach(this.elements, function(element) {
             return $.forEach(element.querySelectorAll(selector), function(innerElement) {
-                matchedElements.push(innerElement)
-            })      
-        })
+                matchedElements.push(innerElement);
+            });
+        });
 
-        return new another(selector, matchedElements)
+        return new another(selector, matchedElements);
     }
 
     /**
      * Gets the first DOM element inside the first target element.
      */
     function firstChild() {
-        var firstElement = this.elements[0].firstElementChild
+        var firstElement = this.elements[0].firstElementChild;
 
-        return new another(undefined, [firstElement])
+        return new another(undefined, [firstElement]);
     }
 
     /**
      * Gets the last DOM element inside the last target element.
      */
     function lastChild() {
-        var lastElement = this.elements[0].lastElementChild
+        var lastElement = this.elements[0].lastElementChild;
 
-        return new another(undefined, [lastElement])
+        return new another(undefined, [lastElement]);
     }
 
     /**
@@ -127,10 +127,10 @@
      */
     function hasClass(className) {
         var callback = function(element) {
-            return element.classList.contains(className)
+            return element.classList.contains(className);
         }
 
-        return $.some(this.elements, callback)
+        return $.some(this.elements, callback);
     }
 
     /**
@@ -140,12 +140,12 @@
      */
     function addClass(className) {
         var callback = function(element) {
-            element.classList.add(className)
+            element.classList.add(className);
         }
 
-        $.forEach(this.elements, callback)
+        $.forEach(this.elements, callback);
         
-        return this
+        return this;
     }
 
     /**
@@ -155,12 +155,12 @@
      */
     function removeClass(className) {
         var callback = function(element) {
-            element.classList.remove(className)
+            element.classList.remove(className);
         }
 
-        $.forEach(this.elements, callback)
+        $.forEach(this.elements, callback);
         
-        return this
+        return this;
     }
 
      /**
@@ -169,13 +169,13 @@
      * @param string className 
      */
     function toggleClass(className) {
-        if (this.hasClass(className)) {
-            this.removeClass(className)
-        } else {
-            this.addClass(className)
+        var callback = function(element) {
+            element.classList.toggle(className);
         }
 
-        return this
+        $.forEach(this.elements, callback);
+
+        return this;
     }
 
     /**
@@ -184,7 +184,7 @@
      * @param string selector 
      */
     var $ = function(selector) {
-        return new another(selector)
+        return new another(selector);
     }
 
     /**
@@ -196,15 +196,15 @@
      * @param function callback Test callback function
      */
     $.some = function (list, callback) {
-        var i = list.length
+        var i = list.length;
         
         while (i--) {
             if (callback(list[i])) {
-                return true
+                return true;
             }
         }
         
-        return false
+        return false;
     }
 
     /**
@@ -218,10 +218,10 @@
      * @param function callback Test callback function
      */
     $.forEach = function (list, callback) {
-        var i = list.length
+        var i = list.length;
 
         while (i--) {
-            callback(list[i])
+            callback(list[i]);
         }
     }
 
@@ -234,8 +234,8 @@
      * other libraries that uses `$`.
      */
     if (!window.$) {
-        window.$ = $
+        window.$ = $;
     } else {
-        window.anotherJS = $
+        window.anotherJS = $;
     }
 })(window)
