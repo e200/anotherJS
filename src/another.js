@@ -21,6 +21,8 @@
         this.show   = show;
         this.toggle = toggle;
 
+        this.next       = next;
+        this.prev       = prev;
         this.find       = find;
         this.firstChild = firstChild;
         this.lastChild  = lastChild;
@@ -29,6 +31,24 @@
         this.addClass    = addClass;
         this.removeClass = removeClass;
         this.toggleClass = toggleClass;
+    }
+
+    /**
+     * Gets the first target next element sibling.
+     */
+    function next() {
+        var nextElement = this.elements[0].nextElementSibling;
+
+        return new another(undefined, [nextElement]);
+    }
+
+    /**
+     * Gets the first target previous element sibling.
+     */
+    function prev() {
+        var prevElement = this.elements[0].previousElementSibling;
+        
+        return new another(undefined, [prevElement]);
     }
 
     /**

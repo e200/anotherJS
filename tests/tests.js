@@ -75,6 +75,14 @@ QUnit.test("Hello JS Tests", function(assert){
 
     object = null
 
+    // next()
+    object = $('.words .first').next();
+    assert.ok(object.hasClass('next'))
+
+    // prev()
+    object = $('.words .next').prev();
+    assert.ok(object.hasClass('prev'))
+
     // find()
     object = $('.words').find('span');
     assert.equal(object.length, 6);
