@@ -222,7 +222,7 @@
      * @param function callback 
      */
     function off(event_name) {        
-        $.forEach(this.elements, fsunction(element){
+        $.forEach(this.elements, function(element){
             element.removeEventListener(event_name);
         })
     }
