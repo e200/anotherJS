@@ -6,8 +6,10 @@
      * @param array  elements Array containing DOM elements
      */
     var another = function(selector, elements) {
-        if (typeof selector == 'function') {
-            window.onload = selector;
+        if (typeof selector === 'function') {
+            document.addEventListener('DOMContentLoaded', selector);
+        } else if (typeof selector === 'object') {
+            this.elements = [selector.elements];
         } else {
             this.selector = selector;
             
@@ -241,18 +243,15 @@
     }
 
     /**
-     * Returns an array containing all
-     * elements witch the test `callback`
-     * functions returns true when invoked.
+     * Test if `testCallback` returns true
+     * for some of the elements in the `list`.
      * 
      * @param array    list Array list
      * @param function callback Test callback function
      */
-    $.some = function (list, callback) {
-        var i = list.length;
-        
-        while (i--) {
-            if (callback(list[i])) {
+    $.some = function (list, testCallback) {
+        for (var i = 0; i < list.length; i++) {
+            if (testCallback(list[i])) {
                 return true;
             }
         }
@@ -271,9 +270,7 @@
      * @param function callback Test callback function
      */
     $.forEach = function (list, callback) {
-        var i = list.length;
-
-        while (i--) {
+        for (var i = 0; i < list.length; i++) {
             callback(list[i]);
         }
     }

@@ -1,18 +1,34 @@
 QUnit.test("Hello JS Tests", function(assert){
-    assert.ok('function' === typeof $);
-    assert.ok('object' === typeof $());
-
+    
     var selector      = null;
     var object        = null;
     var expectedValue = null;
     var expectedClass = null;
 
     // $
+    assert.ok('function' === typeof $);
+    assert.ok('object' === typeof $());
+
     selector = '#main';
     object   = $(selector);
     assert.equal(object.selector, selector);
     assert.equal(object.length, 1);
     assert.equal(object.elements[0].id, 'main');
+
+    // $.forEach() 
+    var i = 0;   
+    $.forEach([0, 1, 2], function(element){
+        assert.equal(element, i);
+        i++;
+    })
+
+    // $.some()
+    assert.ok($.some([0, 1, 2], function(element){
+        return (element < 3);
+    }))
+    assert.notOk($.some([0, 1, 2], function(element){
+        return (element > 4);
+    }));
 
     /** Class */
     expectedClass = 'side-item';
