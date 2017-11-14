@@ -6,34 +6,38 @@
      * @param array  elements Array containing DOM elements
      */
     var another = function(selector, elements) {
-        this.selector = selector;
-
-        /**
-         * If we get a list of elements from outside
-         * of this function, we'll use these elements
-         * instead of query new ones.
-         */
-        this.elements = elements ? elements : document.querySelectorAll(selector);
-        this.length   = this.elements.length;
-
-        this.css    = css;
-        this.hide   = hide;
-        this.show   = show;
-        this.toggle = toggle;
-
-        this.on  = on
-        this.off = off
-
-        this.next       = next;
-        this.prev       = prev;
-        this.find       = find;
-        this.firstChild = firstChild;
-        this.lastChild  = lastChild;
-        
-        this.hasClass    = hasClass;
-        this.addClass    = addClass;
-        this.removeClass = removeClass;
-        this.toggleClass = toggleClass;
+        if (typeof selector == 'function') {
+            window.onload = selector;
+        } else {
+            this.selector = selector;
+            
+            /**
+             * If we get a list of elements from outside
+             * of this function, we'll use these elements
+             * instead of query new ones.
+             */
+            this.elements = elements ? elements : document.querySelectorAll(selector);
+            this.length   = this.elements.length;
+    
+            this.css    = css;
+            this.hide   = hide;
+            this.show   = show;
+            this.toggle = toggle;
+    
+            this.on  = on
+            this.off = off
+    
+            this.next       = next;
+            this.prev       = prev;
+            this.find       = find;
+            this.firstChild = firstChild;
+            this.lastChild  = lastChild;
+            
+            this.hasClass    = hasClass;
+            this.addClass    = addClass;
+            this.removeClass = removeClass;
+            this.toggleClass = toggleClass;
+        }
     }
 
     /**
