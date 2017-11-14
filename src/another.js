@@ -64,7 +64,7 @@
      */
     function show() {
         $.forEach(this.elements, function(element) {
-            element.style.display = 'block';
+            element.style.display = '';
         });
 
         return this;
