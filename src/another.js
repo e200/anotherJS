@@ -8,8 +8,6 @@
     var another = function(selector, elements) {
         if (typeof selector === 'function') {
             document.addEventListener('DOMContentLoaded', selector);
-        } else if (typeof selector === 'object') {
-            this.elements = [selector.elements];
         } else {
             this.selector = selector;
             
@@ -239,7 +237,11 @@
      * @param string selector 
      */
     var $ = function(selector) {
-        return new another(selector);
+        if (typeof selector === 'object') {
+            return selector;
+        } else {
+            return new another(selector);
+        }
     }
 
     /**

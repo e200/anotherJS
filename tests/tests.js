@@ -1,28 +1,41 @@
 QUnit.test("Hello JS Tests", function(assert){
-    
-    var selector      = null;
-    var object        = null;
-    var expectedValue = null;
-    var expectedClass = null;
 
-    // $
-    assert.ok('function' === typeof $);
-    assert.ok('object' === typeof $());
+    /**
+     * Testing the `$` behaviour
+     * 
+     * We need to make sure `$` is a
+     * function and when invoked
+     * returns an `another` object.
+     * 
+     * We also need to make sure
+     * that if someone uses `$(this)`
+     * where the `this` context is
+     * an `another` function|object
+     * we will return the context object.
+     */
+    assert.ok('function' === typeof $, '$ must be a function');
+    assert.ok('object' === typeof $(), 'The $() must return an object');
+    var object = $('body');
+    assert.equal(object, $(object), 'The returned object must have the object.selector');
 
-    selector = '#main';
-    object   = $(selector);
-    assert.equal(object.selector, selector);
-    assert.equal(object.length, 1);
-    assert.equal(object.elements[0].id, 'main');
-
-    // $.forEach() 
+    /**
+     * We need to ensure that `$.forEach()`
+     * calls and returns the current element
+     * for each element on the `list`.
+     */
     var i = 0;   
     $.forEach([0, 1, 2], function(element){
         assert.equal(element, i);
         i++;
     })
 
-    // $.some()
+    /**
+     * We need to ensure that `$.some()`
+     * returns true for an element when
+     * calling the test callback function
+     * for at least one element on the `list`,
+     * and false if not.
+     */
     assert.ok($.some([0, 1, 2], function(element){
         return (element < 3);
     }))
@@ -30,27 +43,60 @@ QUnit.test("Hello JS Tests", function(assert){
         return (element > 4);
     }));
 
-    /** Class */
-    expectedClass = 'side-item';
+    /**
+     * Testing the $('selector')
+     * 
+     * Here will make sure $('selector')
+     * return a new `another` object
+     * containing the target(s) elements(s).
+     * 
+     * We also need to make sure the returned
+     * object contains fills the properties:
+     * 
+     * object.selector
+     * object.length
+     * object.elements
+     */
+    var selector = '#main';
+    var object   = $(selector);
+    assert.equal(object.elements[0].id, 'main', 'The returned object must contains the target element');    
+    assert.equal(object.selector, selector, 'The returned object must have the object.selector');
+    assert.equal(object.length, 1, 'The returned object must have a length of 1');
 
-    // hasClass()
-    assert.ok($('.umburg').hasClass('side-item'));
-    assert.ok($('.line').hasClass('line'));
-    assert.notOk($('.line').hasClass('crossed'));
+    /**
+     * We need to make sure that
+     * `hasClass()` returns true if
+     * at least one target element
+     * has the given class name, and
+     * false if not.
+     */
+    assert.ok($('.umburg').hasClass('side-item'), 'Must return true since `.umburg` has the class `.side-item`');
+    assert.ok($('.line').hasClass('line'), 'Must return true since `.line` has the class `.line`');
+    assert.notOk($('.line').hasClass('crossed'), 'Must return false since `.line` hasn\'t the class `.crossed`');
 
-    // removeClass()
-    object = $('.umburg').removeClass(expectedClass);
-    assert.notOk(object.elements[0].classList.contains(expectedClass));
+    /**
+     * We need to make sure that
+     * `removeClass()` removes the
+     * given class from all target
+     * elements.
+     */
+    var object = $('.umburg').removeClass('side-item');
+    assert.notOk(object.elements[0].classList.contains('side-item'), 'Must return false, `.umburg` hasn\'t the class `.side-item`');
     
-    // addClass()
-    object = $('.umburg').addClass(expectedClass);
-    assert.ok(object.elements[0].classList.contains(expectedClass));
+    /**
+     * We need to make sure that
+     * `addClass()` adds the
+     * given class to all target
+     * elements.
+     */
+    var object = $('.umburg').addClass('side-item');
+    assert.ok(object.elements[0].classList.contains('side-item'), 'Must return true, `.umburg` has the class `.side-item`');
         
     // toggleClass()
-    object = $('.umburg').toggleClass(expectedClass);
-    assert.notOk(object.elements[0].classList.contains(expectedClass));
-    object = $('.umburg').toggleClass(expectedClass);
-    assert.ok(object.elements[0].classList.contains(expectedClass));
+    var object = $('.umburg').toggleClass('side-item');
+    assert.notOk(object.elements[0].classList.contains('side-item'));
+    var object = $('.umburg').toggleClass('side-item');
+    assert.ok(object.elements[0].classList.contains('side-item'));
 
     object = null;
     expectedClass = null;
