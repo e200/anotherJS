@@ -23,6 +23,8 @@ This library comes with the following methods:
 - addClass()
 - removeClass()
 - toggleClass()
+- next()
+- prev()
 - find()
 - firstChild()
 - lastChild()
