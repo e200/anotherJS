@@ -29,7 +29,7 @@ This library comes with the following methods:
 - firstChild()
 - lastChild()
 
-We also supports event handler using the `on()` method:
+We also support event handling using the `on()` and `off()` methods:
 
 ```javascript
 $('body')
@@ -38,6 +38,13 @@ $('body')
     .on('click', function(){
         $(this).hide()
     })
+```
+
+```javascript
+$('body')
+    .find('#app')
+    .firstChild()
+    .off('click')
 ```
 
 You can get the **NodeList** of the matched elements:
