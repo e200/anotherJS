@@ -58,6 +58,23 @@ QUnit.test("Hello JS Tests", function(assert){
     
     object = null;
 
+    // hide()
+    object = $('#dynamic_css_input').hide();
+    assert.ok(object.elements[0].style.display === 'none');
+
+    // show()
+    object = $('#dynamic_css_input').show();
+    assert.ok(object.elements[0].style.display === '');
+
+    // toggle()
+    object = $('#dynamic_css_input').toggle();
+    assert.ok(object.elements[0].style.display === 'none');
+
+    object = $('#dynamic_css_input').toggle();
+    assert.ok(object.elements[0].style.display === '');
+
+    object = null
+
     // find()
     object = $('.words').find('span');
     assert.equal(object.length, 6);
