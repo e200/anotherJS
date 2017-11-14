@@ -1,24 +1,25 @@
 {
-  "name": "e200js",
-  "description": "Collection of reused codes from my portfolio",
-  "main": "e200.js",
+  "name": "anotherJS",
+  "description": "Collection of JS utils codes from my portfolio",
+  "main": "dist/another.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/e200/e200js.git"
+    "url": "git+https://github.com/e200/anotherJS.git"
   },
   "author": "Eleandro Duzentos <eleandro@inbox.ru>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/e200/e200js/issues"
+    "url": "https://github.com/e200/anotherJS/issues"
   },
-  "homepage": "https://github.com/e200/e200js",
+  "homepage": "https://github.com/e200/anotherJS",
   "devDependencies": {
     "browser-sync": "^2.18.13",
     "gulp": "^3.9.1",
     "gulp-plumber": "^1.1.0",
-    "gulp-uglify": "^3.0.0"
+    "gulp-uglify": "^3.0.0",
+    "qunit": "^2.4.1"
   }
 }

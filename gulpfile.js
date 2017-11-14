@@ -22,12 +22,10 @@ gulp.task('js:minify', function(){
             drop_debugger: true,
             toplevel: true
         },
-        mangle: {
-            toplevel: true
-        }
+        mangle: true
     }
 
-    return gulp.src([srcFolder + 'slim.js'])
+    return gulp.src([srcFolder + 'another.js'])
         .pipe(pumbler())
         .pipe(uglify(uglifyOptions))
         .pipe(gulp.dest(distFolder))
