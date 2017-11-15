@@ -45,8 +45,8 @@
      */
     function next() {
         var nextElement = this.elements[0].nextElementSibling;
-
-        return new another(undefined, [nextElement]);
+        
+        return $.make(nextElement);
     }
 
     /**
@@ -55,7 +55,7 @@
     function prev() {
         var prevElement = this.elements[0].previousElementSibling;
         
-        return new another(undefined, [prevElement]);
+        return $.make(prevElement);
     }
 
     /**
@@ -135,7 +135,7 @@
     function firstChild() {
         var firstElement = this.elements[0].firstElementChild;
 
-        return new another(undefined, [firstElement]);
+        return $.make(firstElement);
     }
 
     /**
@@ -144,7 +144,7 @@
     function lastChild() {
         var lastElement = this.elements[0].lastElementChild;
 
-        return new another(undefined, [lastElement]);
+        return $.make(lastElement);
     }
 
     /**
@@ -242,6 +242,10 @@
         } else {
             return new another(selector);
         }
+    }
+
+    $.make = function(elements) {
+        return elements ? new another(undefined, [elements]) : null;
     }
 
     /**

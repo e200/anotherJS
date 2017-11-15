@@ -98,55 +98,52 @@ QUnit.test("Hello JS Tests", function(assert){
     var object = $('.umburg').toggleClass('side-item');
     assert.ok(object.elements[0].classList.contains('side-item'));
 
-    object = null;
-    expectedClass = null;
-
     /** css() */
-    object = $('#dynamic_css_input').css({display: 'none'});
+    var object = $('#dynamic_css_input').css({display: 'none'});
     assert.ok(object.elements[0].style.display === 'none');
 
-    object = $('#dynamic_css_input').css({display: ''});
+    var object = $('#dynamic_css_input').css({display: ''});
     assert.ok(object.elements[0].style.display === '');
     
-    object = $('#dynamic_css_input').css({visibility: 'collapse'});
+    var object = $('#dynamic_css_input').css({visibility: 'collapse'});
     assert.ok(object.elements[0].style.visibility === 'collapse');
     
-    object = $('#dynamic_css_input').css({visibility: 'visible'});
+    var object = $('#dynamic_css_input').css({visibility: 'visible'});
     assert.ok(object.elements[0].style.visibility === 'visible');
 
-    object = $('#dynamic_css_input').css({backgroundColor: 'silver', borderColor: 'grey'});
+    var object = $('#dynamic_css_input').css({backgroundColor: 'silver', borderColor: 'grey'});
     assert.ok(object.elements[0].style.backgroundColor === 'silver');
     assert.ok(object.elements[0].style.borderColor === 'grey');
-    
-    object = null;
 
     // hide()
-    object = $('#dynamic_css_input').hide();
+    var object = $('#dynamic_css_input').hide();
     assert.ok(object.elements[0].style.display === 'none');
 
     // show()
-    object = $('#dynamic_css_input').show();
+    var object = $('#dynamic_css_input').show();
     assert.ok(object.elements[0].style.display === '');
 
     // toggle()
-    object = $('#dynamic_css_input').toggle();
+    var object = $('#dynamic_css_input').toggle();
     assert.ok(object.elements[0].style.display === 'none');
 
-    object = $('#dynamic_css_input').toggle();
+    var object = $('#dynamic_css_input').toggle();
     assert.ok(object.elements[0].style.display === '');
 
-    object = null
-
     // next()
-    object = $('.words .first').next();
+    var object = $('.words .first').next();
     assert.ok(object.hasClass('next'))
 
+     // next()
+     console.log($('.words2 .active').next());
+     assert.ok($('.words2 .active').next() === null);
+
     // prev()
-    object = $('.words .next').prev();
+    var object = $('.words .next').prev();
     assert.ok(object.hasClass('prev'))
 
     // find()
-    object = $('.words').find('span');
+    var object = $('.words').find('span');
     assert.equal(object.length, 6);
 
     // firstChild()
@@ -154,6 +151,4 @@ QUnit.test("Hello JS Tests", function(assert){
 
     // lastChild()
     assert.ok($('.words').lastChild().hasClass('last'));
-    
-    object = null;
 })
